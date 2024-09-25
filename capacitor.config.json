@@ -1,0 +1,10 @@
+{
+  "appId": "note.front.lc",
+  "appName": "self-hosting-note",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
