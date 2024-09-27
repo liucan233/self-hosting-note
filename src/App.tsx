@@ -1,9 +1,10 @@
+import css from './App.module.css'
 import { createRoot } from "react-dom/client";
 import { Camera } from "@capacitor/camera";
 import { SplashScreen } from "@capacitor/splash-screen";
-import { StatusBar } from "@capacitor/status-bar";
+import { StatusBar, Style } from "@capacitor/status-bar";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { InitialConfigType, LexicalComposer } from "@lexical/react/LexicalComposer";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
@@ -23,13 +24,16 @@ import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { useEffect } from "react";
 
-const editorConfig = {
+const editorConfig: InitialConfigType = {
   namespace: "React.js Demo",
   nodes: [HeadingNode, QuoteNode, MarkNode, ListItemNode, LinkNode, ListNode,CodeHighlightNode, CodeNode],
   onError(error: Error) {
     throw error;
   },
   editorState: () => $convertFromMarkdownString("# 12", TRANSFORMERS),
+  theme: {
+
+  }
 };
 
 function MyCustomAutoFocusPlugin() {
@@ -51,7 +55,7 @@ const App = () => {
     <div style={{ marginTop: 50 }}>
       <LexicalComposer initialConfig={editorConfig}>
         <RichTextPlugin
-          contentEditable={<ContentEditable className="editor-input" />}
+          contentEditable={<ContentEditable className={css.editor}/>}
           placeholder={<span>请输入</span>}
           ErrorBoundary={LexicalErrorBoundary}
         />
@@ -73,3 +77,6 @@ const root = createRoot(rootEle);
 root.render(<App />);
 
 SplashScreen.hide();
+StatusBar.setStyle({
+  style: Style.Light
+})
