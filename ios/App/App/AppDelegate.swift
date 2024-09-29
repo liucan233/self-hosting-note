@@ -3,8 +3,10 @@ import Capacitor
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+  var t: UILabel?
 
     var window: UIWindow?
+  var gv: UIView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,6 +29,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+      if true {
+        return
+      }
+      if #available(iOS 15, *){
+        let presentedViewController = UIViewController()
+        if let mv = presentedViewController.view {
+          mv.backgroundColor = UIColor.red
+          let t = UILabel()
+          t.text = "233333"
+          t.isUserInteractionEnabled = true
+          t.backgroundColor = UIColor.blue
+          
+          let g = UIPanGestureRecognizer(target: self, action: #selector(self.onPanInT(_:)))
+          
+          t.addGestureRecognizer(g)
+          //          t.sizeToFit();
+          window?.rootViewController?.view.addSubview(t)
+          t.translatesAutoresizingMaskIntoConstraints = false;
+          t.transform = CGAffineTransform(translationX: 100, y: 200)
+          self.t = t;
+        }
+        if let p = presentedViewController.sheetPresentationController{
+          p.detents = [.medium(), .medium()]
+        }
+        gv = presentedViewController.view
+        window?.rootViewController?.present(presentedViewController, animated: true)
+      }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -44,6 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Feel free to add additional processing here, but if you want the App API to support
         // tracking app url opens, make sure to keep this call
         return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
-    }
+    }   
+  
+  @objc public func onPanInT(_ g: UIGestureRecognizer) -> Void {
+    let p = g.location(in: window?.rootViewController?.view)
+    
+    t?.transform = CGAffineTransform(translationX: p.x, y: p.y)
+    print("view position", t?.safeAreaInsets.top, window?.safeAreaInsets.top)
+  }
 
 }

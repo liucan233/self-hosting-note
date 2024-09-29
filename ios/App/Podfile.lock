@@ -4,6 +4,8 @@ PODS:
   - CapacitorCamera (6.0.2):
     - Capacitor
   - CapacitorCordova (6.1.2)
+  - CapacitorKeyboard (6.0.2):
+    - Capacitor
   - CapacitorSplashScreen (6.0.2):
     - Capacitor
   - CapacitorStatusBar (6.0.1):
@@ -13,6 +15,7 @@ DEPENDENCIES:
   - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@6.1.2_@capacitor+core@6.1.2/node_modules/@capacitor/ios`)"
   - "CapacitorCamera (from `../../node_modules/.pnpm/@capacitor+camera@6.0.2_@capacitor+core@6.1.2/node_modules/@capacitor/camera`)"
   - "CapacitorCordova (from `../../node_modules/.pnpm/@capacitor+ios@6.1.2_@capacitor+core@6.1.2/node_modules/@capacitor/ios`)"
+  - "CapacitorKeyboard (from `../../node_modules/.pnpm/@capacitor+keyboard@6.0.2_@capacitor+core@6.1.2/node_modules/@capacitor/keyboard`)"
   - "CapacitorSplashScreen (from `../../node_modules/.pnpm/@capacitor+splash-screen@6.0.2_@capacitor+core@6.1.2/node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/.pnpm/@capacitor+status-bar@6.0.1_@capacitor+core@6.1.2/node_modules/@capacitor/status-bar`)"
 
@@ -23,6 +26,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/.pnpm/@capacitor+camera@6.0.2_@capacitor+core@6.1.2/node_modules/@capacitor/camera"
   CapacitorCordova:
     :path: "../../node_modules/.pnpm/@capacitor+ios@6.1.2_@capacitor+core@6.1.2/node_modules/@capacitor/ios"
+  CapacitorKeyboard:
+    :path: "../../node_modules/.pnpm/@capacitor+keyboard@6.0.2_@capacitor+core@6.1.2/node_modules/@capacitor/keyboard"
   CapacitorSplashScreen:
     :path: "../../node_modules/.pnpm/@capacitor+splash-screen@6.0.2_@capacitor+core@6.1.2/node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
@@ -32,9 +37,10 @@ SPEC CHECKSUMS:
   Capacitor: 679f9673fdf30597493a6362a5d5bf233d46abc2
   CapacitorCamera: ed022171dbf3853e68eec877b4d78995378af6b7
   CapacitorCordova: f48c89f96c319101cd2f0ce8a2b7449b5fb8b3dd
+  CapacitorKeyboard: 2700f9b18687be021e28b5a09b59eb151a46d5e0
   CapacitorSplashScreen: 250df9ef8014fac5c7c1fd231f0f8b1d8f0b5624
   CapacitorStatusBar: b81d4fb5d4e0064c712018071b3ab4b810b39a63
 
-PODFILE CHECKSUM: ec0b2e7931a9be15bdd884f3191e1b202cd497db
+PODFILE CHECKSUM: 0dd55604071421fc1f42c60f671fe167775c21b5
 
 COCOAPODS: 1.10.2

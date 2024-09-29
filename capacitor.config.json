@@ -1,8 +1,8 @@
 {
   "appId": "note.front.lc",
-  "appName": "self-hosting-note",
+  "appName": "速记",
   "webDir": "dist",
-  "server": {
+  "_server": {
     "url": "http://10.79.155.153:5173",
     "cleartext": true
   },

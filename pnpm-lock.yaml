@@ -17,6 +17,9 @@ dependencies:
   '@capacitor/ios':
     specifier: ^6.1.2
     version: 6.1.2(@capacitor/core@6.1.2)
+  '@capacitor/keyboard':
+    specifier: ^6.0.2
+    version: 6.0.2(@capacitor/core@6.1.2)
   '@capacitor/splash-screen':
     specifier: 6.0.2
     version: 6.0.2(@capacitor/core@6.1.2)
@@ -335,6 +338,14 @@ packages:
     resolution: {integrity: sha512-HaeW68KisBd/7TmavzPDlL2bpoDK5AjR2ZYrqU4TlGwM88GtQfvduBCAlSCj20X0w/4+rWMkseD9dAAkacjiyQ==}
     peerDependencies:
       '@capacitor/core': ^6.1.0
+    dependencies:
+      '@capacitor/core': 6.1.2
+    dev: false
+
+  /@capacitor/keyboard@6.0.2(@capacitor/core@6.1.2):
+    resolution: {integrity: sha512-fOfO3rQ0ZXuTHpK03INVTwmBnpqMiH8EHPpNaHjwjKwdrVRWBvtgIFhuyHNXh53rdcXw+uHB+1RIiNabnCrITw==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
     dependencies:
       '@capacitor/core': 6.1.2
     dev: false
