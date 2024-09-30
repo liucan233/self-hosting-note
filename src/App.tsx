@@ -25,9 +25,9 @@ import { ListItemNode, ListNode } from "@lexical/list";
 import { MarkNode } from "@lexical/mark";
 import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { CodeHighlightNode, CodeNode } from "@lexical/code";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { registerPlugin } from "@capacitor/core";
-import {Keyboard} from "@capacitor/keyboard"
+import {Keyboard, KeyboardResize} from "@capacitor/keyboard"
 
 const inject = registerPlugin("inject");
 
@@ -48,7 +48,7 @@ const editorConfig: InitialConfigType = {
   onError(error: Error) {
     throw error;
   },
-  editorState: () => $convertFromMarkdownString("# 12", TRANSFORMERS),
+  editorState: () => $convertFromMarkdownString("# 12\n\n1212\n\n# 12", TRANSFORMERS),
   theme: {},
 };
 
@@ -64,16 +64,31 @@ function MyCustomAutoFocusPlugin() {
   return null;
 }
 
+let y=0
+
 const App = () => {
-  const [t, setT] = useState("");
-  useEffect(() => {
-    (inject as any).getSafeArea().then((res: any) => {
-      console.log(res);
-    });
-  }, []);
+  const wrapRef = useRef<HTMLDivElement>(null)
+  useEffect(()=>{
+    Keyboard.addListener('keyboardWillShow', e=>{
+      if(y>300){
+        wrapRef.current?.scrollTo({
+          top: 2000,
+          behavior: 'smooth'
+        })
+      }
+    })
+  },[])
   return (
-    <div style={{ marginTop: 50 }}>
-      {(window as any).tmp}
+    <div onClickCapture={e=>{
+      y=e.screenY
+      console.log(e.screenY)
+    }} ref={wrapRef} style={{ height: '100vh', overflow: 'hidden auto', overscrollBehavior: 'contain' }}>
+      <div style={{backgroundColor: 'red',height: 50,width:100, position: 'fixed', left: 0, bottom: 0}}/>
+      <div style={{height: 50}}>23333</div>
+      <input placeholder="请输入" />
+      <div style={{height: '50vh'}}>23333</div>
+      <input placeholder="请输入" />
+      <div style={{height: '50vh'}}>23333</div>
       <LexicalComposer initialConfig={editorConfig}>
         <RichTextPlugin
           contentEditable={<ContentEditable inputMode="text" spellCheck="false" className={css.editor} autoComplete="off" />}
@@ -83,6 +98,7 @@ const App = () => {
         <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         {/* <AutoFocusPlugin /> */}
       </LexicalComposer>
+      <div style={{height: 500}}>23333</div>
       <button >点击</button>
     </div>
   );
@@ -90,7 +106,7 @@ const App = () => {
 
 const rootEle = document.createElement("div");
 
-console.log(document.body);
+document.body.style.margin = '0'
 
 document.body.appendChild(rootEle);
 
@@ -103,3 +119,9 @@ SplashScreen.hide();
     style: Style.Light,
   });
 Keyboard.setAccessoryBarVisible({isVisible: false})
+// Keyboard.setScroll({isDisabled: true})
+Keyboard.setResizeMode({ mode: KeyboardResize.None})
+
+// Keyboard.addListener('keyboardWillHide', ()=>{
+//   rootEle.style.transform = `translateY(0)`
+// })
